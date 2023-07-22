@@ -1,0 +1,15 @@
+{ 
+    "lastUpdate": "idk", 
+    "mangas": [ 
+        {
+            "name":"One Piece",
+            "id": "null",
+            "lastChapter": 103
+        },
+        {
+            "name": "Demon Slayer",
+            "id": "null",
+            "lastChapter": 1323
+        }
+    ]
+}
