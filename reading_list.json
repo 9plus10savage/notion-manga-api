@@ -3,14 +3,14 @@
   "lastUpdate": "idk",
   "mangas": [
     {
-      "name": "One Piece",
-      "id": "null",
-      "lastChapter": 103
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
     },
     {
-      "name": "Demon Slayer",
-      "id": "null",
-      "lastChapter": 1323
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
     },
     {
       "title": "Blue Lock",
@@ -21,6 +21,71 @@
       "title": "Blue Lock",
       "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
       "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "One Piece",
+      "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
+      "latestChapter": "921"
+    },
+    {
+      "title": "One Piece",
+      "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
+      "latestChapter": "921"
+    },
+    {
+      "title": "One Piece",
+      "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
+      "latestChapter": "921"
+    },
+    {
+      "title": "Berserk",
+      "id": "801513ba-a712-498c-8f57-cae55b38cc92",
+      "latestChapter": "252"
+    },
+    {
+      "title": "Berserk",
+      "id": "801513ba-a712-498c-8f57-cae55b38cc92",
+      "latestChapter": "252"
     }
   ]
 }
