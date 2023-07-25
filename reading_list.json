@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "lastUpdate": "idk",
+  "mangas": [
+    {
+      "name": "One Piece",
+      "id": "null",
+      "lastChapter": 103
+    },
+    {
+      "name": "Demon Slayer",
+      "id": "null",
+      "lastChapter": 1323
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    },
+    {
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "226"
+    }
+  ]
+}
