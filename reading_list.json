@@ -1,6 +1,5 @@
 {
-  "type": "module",
-  "lastUpdate": "idk",
+  "lastUpdated": "Jul 27 2023 04:00:45",
   "mangas": [
     {
       "title": "Blue Lock",
@@ -8,84 +7,19 @@
       "latestChapter": "226"
     },
     {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
-    {
       "title": "One Piece",
       "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
-      "latestChapter": "921"
-    },
-    {
-      "title": "One Piece",
-      "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
-      "latestChapter": "921"
-    },
-    {
-      "title": "One Piece",
-      "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
-      "latestChapter": "921"
+      "latestChapter": "1086.50"
     },
     {
       "title": "Berserk",
       "id": "801513ba-a712-498c-8f57-cae55b38cc92",
-      "latestChapter": "252"
+      "latestChapter": "373"
     },
     {
-      "title": "Berserk",
-      "id": "801513ba-a712-498c-8f57-cae55b38cc92",
-      "latestChapter": "252"
+      "title": "Chainsaw Man - Digital Colored Comics",
+      "id": "e896c48c-3150-437d-ba57-d8567eb399ae",
+      "latestChapter": "97"
     }
   ]
 }

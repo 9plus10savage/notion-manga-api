@@ -7,6 +7,8 @@ const getTitles = mangaObject => {
     return mangaObject.data.data.map(manga => manga.attributes.title); 
 }
 
-const getDatetime = () => {
+const getCurrentTime = () => {
     return String(new Date()).split(" ").splice(1, 4).join(" ")
 }
+
+module.exports = { getCurrentTime }
