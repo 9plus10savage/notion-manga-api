@@ -1,11 +1,14 @@
-const axios = require('axios')
-const Manga = require('./class.js')
-const { writeFile, readFile } = require("fs");
-const { getCurrentTime } = require('./functions.js')
+#!/usr/bin/env node
 
-const title = 'Chainsaw Man';
+const axios = require('axios');
+const Manga = require('./class.js');
+const path = require('path')
+const { writeFile, readFile } = require("fs");
+const { getCurrentTime } = require('./functions.js');
+
+const title = 'Naruto';
 const baseUrl = 'https://api.mangadex.org';
-const jsonPath = './reading_list.json'
+const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json')
 
 
 const getOrder = () => {
@@ -52,7 +55,7 @@ async function getMangaStats(resp)  {
         }
 
     if (update_flag) {
-        writeFile(jsonPath, JSON.stringify(reading_list, null, 2), (err) => {
+        writeFile(path, JSON.stringify(reading_list, null, 2), (err) => {
         if (err) {
             console.log("Failed to write updated data to file");
             return;
