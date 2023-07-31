@@ -4,11 +4,16 @@ const getExactMatch = mangaObject => {
 }
 
 const getTitles = mangaObject => {
-    return mangaObject.data.data.map(manga => manga.attributes.title); 
+    return mangaObject.data.data.map(manga => manga.attributes.title.en); 
+}
+
+const addReturnToTitles = mangaTitles => {
+    mangaTitles.push('Back to search'), mangaTitles.push('Exit')
+    return mangaTitles
 }
 
 const getCurrentTime = () => {
     return String(new Date()).split(" ").splice(1, 4).join(" ")
 }
 
-module.exports = { getCurrentTime }
+module.exports = { getCurrentTime, getTitles, addReturnToTitles }

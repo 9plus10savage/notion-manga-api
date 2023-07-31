@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Jul 31 2023 22:17:30",
+  "lastUpdated": "Jul 31 2023 23:05:10",
   "mangas": [
     {
       "title": "Blue Lock",
@@ -17,24 +17,9 @@
       "latestChapter": "373"
     },
     {
-      "title": "Chainsaw Man - Digital Colored Comics",
-      "id": "e896c48c-3150-437d-ba57-d8567eb399ae",
-      "latestChapter": "97"
-    },
-    {
       "title": "Chainsaw Man",
       "id": "a77742b1-befd-49a4-bff5-1ad4e6b0ef7b",
       "latestChapter": "137"
-    },
-    {
-      "title": "Naruto",
-      "id": "6b1eb93e-473a-4ab3-9922-1a66d2a29a4a",
-      "latestChapter": "700"
-    },
-    {
-      "title": "Shigatsu wa Kimi no Uso",
-      "id": "eab876cc-a233-4d73-a6c3-a94e7baa70be",
-      "latestChapter": "44"
     }
   ]
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 const axios = require('axios');
-const path = require('path')
-const inquirer = require('inquirer');
+const path = require('path');
 const Manga = require('./class.js');
+const inquirer = require('inquirer');
 const { writeFile, readFile } = require("fs");
-const { getCurrentTime } = require('./functions.js');
+const { getCurrentTime, getTitles, addReturnToTitles } = require('./functions.js');
 
 
 const baseUrl = 'https://api.mangadex.org';
@@ -25,6 +25,12 @@ async function getMangaStats(resp)  {
     chapterID = await getLatestChapterID(mangaID)
     latestChapter = await chapterQuery(chapterID)
     return new Manga(mangaTitle, mangaID, latestChapter)
+}
+
+const formatLatestChapterID = async (mangaVolumes) => {
+    const latestVolume = Object.keys(mangaVolumes).reverse()[0];
+    const latestChapter = Object.keys(mangaVolumes[latestVolume].chapters).reverse()[0];
+    return mangaVolumes[latestVolume]['chapters'][latestChapter].id
 }
 
  const updateList = (path, manga) => {
@@ -78,7 +84,7 @@ const getLatestChapterID = async (mangaID_to_query) => {
     return formatLatestChapterID(resp.data.volumes)
 }
 
-const mangaQuery = async (inputTitle) => {
+const mangaQuery = async (inputTitle, update = false) => {
     const resp = await axios({
         method: 'GET',
         url: `${baseUrl}/manga`,
@@ -87,26 +93,51 @@ const mangaQuery = async (inputTitle) => {
             ...getOrder({relevance: 'desc', followedCount: 'desc'})
         }  
     });
-    const manga = await getMangaStats(resp)
-    updateList(jsonPath, manga)
+    if (update) {
+        const manga = await getMangaStats(resp)
+        updateList(jsonPath, manga)
+    } else {
+        return getTitles(resp)
+    }
 }
 
-const formatLatestChapterID = async (mangaVolumes) => {
-    const latestVolume = Object.keys(mangaVolumes).reverse()[0];
-    const latestChapter = Object.keys(mangaVolumes[latestVolume].chapters).reverse()[0];
-    return mangaVolumes[latestVolume]['chapters'][latestChapter].id
+const addManga = async () => {
+    const mangaTitles = await inquirer
+        .prompt([
+            {
+            name: 'query',
+            message: 'Please enter a search query:',
+            type: 'input'
+            }
+        ])
+        .then(async function (answers) {
+            return await mangaQuery(answers.query)
+        })
+    const selectedManga = await inquirer   
+        .prompt([
+            {
+            name: 'manga',
+            message: 'Please select which manga to add!',
+            type: 'list',
+            choices: addReturnToTitles(mangaTitles)
+            }
+        ])
+        .then(async function (answers) {
+            return answers.manga
+        });
+        
+        switch(selectedManga) {
+            case 'Back to search':
+                addManga();
+                break;
+            case 'Exit':
+                process.exitCode = 1;
+                break;
+           default:
+                mangaQuery(selectedManga, true)
+        }
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
-     inquirer
-     .prompt([
-        {
-        name: 'title',
-        message: 'Please enter a search query',
-        type: 'input'
-        }
-     ])
-     .then((answers) => {
-        mangaQuery(answers.title)
-     })
+    addManga()
 }
