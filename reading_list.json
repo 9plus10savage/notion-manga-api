@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Jul 28 2023 20:50:11",
+  "lastUpdated": "Jul 31 2023 22:17:30",
   "mangas": [
     {
       "title": "Blue Lock",
@@ -30,6 +30,11 @@
       "title": "Naruto",
       "id": "6b1eb93e-473a-4ab3-9922-1a66d2a29a4a",
       "latestChapter": "700"
+    },
+    {
+      "title": "Shigatsu wa Kimi no Uso",
+      "id": "eab876cc-a233-4d73-a6c3-a94e7baa70be",
+      "latestChapter": "44"
     }
   ]
 }
