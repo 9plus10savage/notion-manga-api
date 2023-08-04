@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "add-manga": "./add-manga.js"
+    "add-manga": "./add-manga.js",
+    "delete-manga": "./delete-manga.js",
+    "update-manga": "./update-manga.js"
   },
   "dependencies": {
     "axios": "^1.4.0",

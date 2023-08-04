@@ -7,9 +7,10 @@ const getTitles = mangaObject => {
     return mangaObject.data.data.map(manga => manga.attributes.title.en); 
 }
 
-const addReturnToTitles = mangaTitles => {
-    mangaTitles.push('Back to search'), mangaTitles.push('Exit')
-    return mangaTitles
+const addReturnToTitles = (mangaTitles, search=true) => {
+    const optionsToAdd = search ? ['Back to search', 'Exit'] : ['Exit'];
+    mangaTitles.push(...optionsToAdd);
+    return mangaTitles 
 }
 
 const getCurrentTime = () => {

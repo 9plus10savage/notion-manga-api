@@ -2,29 +2,62 @@
 
 const path = require('path');
 const inquirer = require('inquirer');
-const { writeFile, readFileSync } = require("fs");
+const { writeFileSync, readFileSync } = require("fs");
 
 const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json')
 
 
- const fortnite = readFileSync(jsonPath, 'utf8', (error, jsonString) => {
-        if (error) {
-            console.log(error);
-            return;
+const loadJSONFile = async (path) => {
+    const readingListInitialLoad = readFileSync(path, 'utf8')
+    return JSON.parse(readingListInitialLoad) 
+}
+
+const updateList = async (readingList) => {
+    writeFileSync(jsonPath, JSON.stringify(readingList, null, 2))
+    console.log('Manga has been deleted!')
+}
+
+const deleteManga = (mangaToDelete, readingList) => {
+    const mangaIndex = readingList.mangas.findIndex((manga) => manga.title == mangaToDelete) 
+    if (mangaIndex !== -1) {
+        readingList.mangas.splice(mangaIndex, 1) 
+        updateList(readingList)
+    }
+}
+
+const deleteMangaPrompt = async () => {
+    const readingList = await loadJSONFile(jsonPath);
+    const mangaTitles = readingList.mangas.map((manga) => manga.title);
+    
+    const mangaToDelete = await inquirer
+        .prompt([
+            {
+            name: 'manga',
+            message: 'Please select which manga to delete from your reading list:',
+            type: 'list',
+            choices: [...mangaTitles, 'Exit']
         }
-        try {
-            const readingList = JSON.parse(jsonString);
-            return readingList;
-        }
-        catch (err) {
-            console.log("Error parsing JSON string:", err);
-        }
+        ])
+        .then((answers) => {
+            const selectedMangaUnlessExit = answers.manga !== 'Exit' ? answers.manga: process.exit()
+            return selectedMangaUnlessExit
+        });
+        
+    const mangaDeletionConfirmed = await inquirer
+        .prompt([
+            {
+            name: 'confirmation',
+            message: `Are you sure you want to delete manga '${mangaToDelete}' from your reading list?`,
+            type: 'confirm',
+            }
+        ])
+        .then((answers) => {
+            return answers.confirmation
+        })
 
-    })
+        mangaDeletionConfirmed ? deleteManga(mangaToDelete, readingList) : await deleteMangaPrompt() 
+}
 
-
-console.log(fortnite)
-
-
-//how tf do i get out of readFile
-//
+if (typeof require !== 'undefined' && require.main === module) {
+    deleteMangaPrompt()
+}

@@ -1,15 +1,10 @@
 {
-  "lastUpdated": "Jul 31 2023 23:05:10",
+  "lastUpdated": "Aug 03 2023 23:29:56",
   "mangas": [
-    {
-      "title": "Blue Lock",
-      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "226"
-    },
     {
       "title": "One Piece",
       "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
-      "latestChapter": "1086.50"
+      "latestChapter": "32"
     },
     {
       "title": "Berserk",
@@ -17,9 +12,9 @@
       "latestChapter": "373"
     },
     {
-      "title": "Chainsaw Man",
-      "id": "a77742b1-befd-49a4-bff5-1ad4e6b0ef7b",
-      "latestChapter": "137"
+      "title": "Blue Lock",
+      "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
+      "latestChapter": "227"
     }
   ]
 }
