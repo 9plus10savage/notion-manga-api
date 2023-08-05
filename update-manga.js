@@ -2,9 +2,8 @@
 
 const axios = require('axios');
 const path = require('path');
-const Manga = require('./class.js');
-const { writeFileSync, readFileSync } = require("fs");
-const { getCurrentTime, getTitles, addReturnToTitles } = require('./functions.js')
+const { readFileSync, writeFile } = require("fs");
+const { getCurrentTime } = require('./functions.js')
 
 const baseUrl = 'https://api.mangadex.org';
 const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json');
@@ -14,18 +13,6 @@ const loadJSONFile = async (path = jsonPath) => {
     return JSON.parse(readingListInitialLoad) 
 }
 
-const getMangaTitles = async (path = jsonPath) => {
-    const readingList = await loadJSONFile(path);
-    return readingList.mangas.map((manga) => manga.title);
-}
-
-const getOrder = (order = {}) => {
-    const finalOrderQuery = {};
-    for (const [key, value] of Object.entries(order)) {
-        finalOrderQuery[`order[${key}]`] = value;
-    };
-    return finalOrderQuery
-}
 const chapterQuery = async (chapterID_to_query) => {
     const resp = await axios({
         method: 'GET',
@@ -33,6 +20,7 @@ const chapterQuery = async (chapterID_to_query) => {
     });
     return resp.data.data.attributes.chapter
 } 
+
 const getLatestChapterID = async (mangaID_to_query) => {
     const resp = await axios({
         method: 'GET',
@@ -40,66 +28,62 @@ const getLatestChapterID = async (mangaID_to_query) => {
     });
     return formatLatestChapterID(resp.data.volumes)
 }
-async function getMangaStats(resp)  {
-    [mangaTitle, mangaID] = [resp.data.data[0].attributes.title.en, resp.data.data[0].id]
-/*     console.log('initial ' + mangaTitle) */
+
+const getMangaStats = async (id) =>  {
+    const mangaID = id;
     chapterID = await getLatestChapterID(mangaID)
-/*     console.log(chapterID)
-    console.log('second ' + mangaTitle) */
-    latestChapter = await chapterQuery(chapterID)
-    console.log(mangaTitle, mangaID, latestChapter)
-    return new Manga(mangaTitle, mangaID, latestChapter)
+    return await chapterQuery(chapterID) 
 }
+
 const formatLatestChapterID = async (mangaVolumes) => {
     const latestVolume = Object.keys(mangaVolumes).reverse()[0];
     const latestChapter = Object.keys(mangaVolumes[latestVolume].chapters).reverse()[0];
     return mangaVolumes[latestVolume]['chapters'][latestChapter].id
 }
 
-const mangaQuery = async (inputTitle) => {
-    const resp = await axios({
-        method: 'GET',
-        url: `${baseUrl}/manga`,
-        params: {
-            title: inputTitle,
-            ...getOrder({relevance: 'desc', followedCount: 'desc'})
-        }  
-    });
-    const manga = await getMangaStats(resp)
-    return manga
+const updateList = async (path, readingList, originalReadingList) => {
+    readingList['lastUpdated'] = getCurrentTime()
+    writeFile(path, JSON.stringify(readingList, null, 2), (err) => {
+        if (err) {
+            console.log("Failed to write updated data to file");
+            return;
+        }
+        console.log(`Reading list has been updated! - ${getCurrentTime()}`);
+        printUpdatedMangaList(originalReadingList.mangas, readingList.mangas) 
+            });
 }
 
-const newTest = async () => {
-    const titles = await loadJSONFile()
-    const chapArr = []
-    console.log(titles.mangas)
+  const printUpdatedMangaList = async (originalList, updatedList) => {
+    updatedList.map((updatedManga, index) => {
+        if (updatedManga.latestChapter !== originalList[index].latestChapter) {
+            console.log('[x] ' + updatedManga.title + ' - Ch. ' + updatedManga.latestChapter)
+        }
+        else {
+            console.log( updatedManga.title + ' - Ch. ' + updatedManga.latestChapter)
+        }
+    })
+}  
 
-    for (item of titles.mangas) {
-        chapArr.push(await mangaQuery(item.title))
-    }
-    for (manga of chapArr) {
-        const index = titles.mangas.findIndex((indexItem) => indexItem.title == manga.title)
-        titles.mangas[index].latestChapter = manga.latestChapter  
-    }
-    console.log(titles.mangas)
+const updateManga = async () => {
+    const fullReadingList = await loadJSONFile();
+    const orignalList = { ...fullReadingList};
+
+    const updatedMangas = await Promise.all(
+        fullReadingList.mangas.map(async (item) => {
+            const latestChapter = await getMangaStats(item.id);
+            return { id: item.id, latestChapter };
+        })
+    );
     
-}
+    const updatedMangasMap = new Map(updatedMangas.map(updated => [updated.id, updated]));
 
-const newTest2 = async () => {
-    const titles = await loadJSONFile();
-
-    const mangaPromises = titles.mangas.map(async (item) => {
-        const manga = await mangaQuery(item.title);
-        console.log({ title: manga.title, latestChapter: manga.latestChapter }) 
-        return { title: manga.title, latestChapter: manga.latestChapter };
-    });
-
-    const updatedMangas = await Promise.all(mangaPromises);
-    /* console.log(updatedMangas) */
-    titles.mangas = titles.mangas.map((manga) => {
-        const updatedManga = updatedMangas.find((updated) => updated.title === manga.title);
-/*         return { ...manga, latestChapter: updatedManga.latestChapter };
- */    });
+    fullReadingList.mangas = fullReadingList.mangas.map((mangaObject) => ({
+        ...mangaObject,
+        latestChapter: updatedMangasMap.get(mangaObject.id).latestChapter
+    }));
+    updateList(jsonPath, fullReadingList, orignalList)
 };
 
-newTest2()
+if (typeof require !== 'undefined' && require.main === module) {
+    updateManga()
+}
