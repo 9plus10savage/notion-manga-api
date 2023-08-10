@@ -141,3 +141,5 @@ const addManga = async () => {
 if (typeof require !== 'undefined' && require.main === module) {
     addManga()
 }
+
+module.exports = { addManga }

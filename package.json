@@ -1,14 +1,15 @@
 {
-  "name": "notion_api_test",
-  "version": "1.0.0",
-  "description": "testing notion api",
+  "name": "automatic-manga-tracker-for-notion",
+  "version": "0.1.0",
+  "description": "Small program intended to manage a given reading list, utilizing the mangadex api to check for updates.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gabriel Høst Andersen",
+  "license": "",
   "bin": {
+    "manga": "./manga-overview.js",
     "add-manga": "./add-manga.js",
     "delete-manga": "./delete-manga.js",
     "update-manga": "./update-manga.js"

@@ -87,3 +87,5 @@ const updateManga = async () => {
 if (typeof require !== 'undefined' && require.main === module) {
     updateManga()
 }
+
+module.exports = { updateManga, loadJSONFile }

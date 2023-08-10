@@ -17,7 +17,7 @@ const updateList = async (readingList) => {
     console.log('Manga has been deleted!')
 }
 
-const deleteManga = (mangaToDelete, readingList) => {
+const removeMangaFromList = (mangaToDelete, readingList) => {
     const mangaIndex = readingList.mangas.findIndex((manga) => manga.title == mangaToDelete) 
     if (mangaIndex !== -1) {
         readingList.mangas.splice(mangaIndex, 1) 
@@ -25,7 +25,7 @@ const deleteManga = (mangaToDelete, readingList) => {
     }
 }
 
-const deleteMangaPrompt = async () => {
+const deleteManga = async () => {
     const readingList = await loadJSONFile(jsonPath);
     const mangaTitles = readingList.mangas.map((manga) => manga.title);
     
@@ -36,7 +36,7 @@ const deleteMangaPrompt = async () => {
             message: 'Please select which manga to delete from your reading list:',
             type: 'list',
             choices: [...mangaTitles, 'Exit']
-        }
+            }
         ])
         .then((answers) => {
             const selectedMangaUnlessExit = answers.manga !== 'Exit' ? answers.manga: process.exit()
@@ -55,9 +55,11 @@ const deleteMangaPrompt = async () => {
             return answers.confirmation
         })
 
-        mangaDeletionConfirmed ? deleteManga(mangaToDelete, readingList) : await deleteMangaPrompt() 
+        mangaDeletionConfirmed ? removeMangaFromList(mangaToDelete, readingList) : await deleteManga() 
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
-    deleteMangaPrompt()
+    deleteManga()
 }
+
+module.exports = { deleteManga }
