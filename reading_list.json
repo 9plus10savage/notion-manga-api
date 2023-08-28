@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Aug 09 2023 02:28:28",
+  "lastUpdated": "Aug 28 2023 11:31:30",
   "mangas": [
     {
       "title": "One Piece",
@@ -14,7 +14,12 @@
     {
       "title": "Blue Lock",
       "id": "4141c5dc-c525-4df5-afd7-cc7d192a832f",
-      "latestChapter": "228"
+      "latestChapter": "230"
+    },
+    {
+      "title": "Chainsaw Man",
+      "id": "a77742b1-befd-49a4-bff5-1ad4e6b0ef7b",
+      "latestChapter": "140"
     }
   ]
 }

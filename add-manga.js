@@ -90,7 +90,7 @@ const mangaQuery = async (inputTitle, update = false) => {
         url: `${baseUrl}/manga`,
         params: {
             title: inputTitle,
-            ...getOrder({relevance: 'desc', followedCount: 'desc'})
+            ...getOrder({followedCount: 'desc'})
         }  
     });
     if (update) {
