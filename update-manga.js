@@ -13,32 +13,24 @@ const loadJSONFile = async (path = jsonPath) => {
     return JSON.parse(readingListInitialLoad) 
 }
 
-const chapterQuery = async (chapterID_to_query) => {
+const getOrder = (order = {}) => {
+    const finalOrderQuery = {};
+    for (const [key, value] of Object.entries(order)) {
+        finalOrderQuery[`order[${key}]`] = value;
+    };
+    return finalOrderQuery
+}
+ 
+const chapterQuery = async (mangaID_to_query) => {
     const resp = await axios({
         method: 'GET',
-        url: `${baseUrl}/chapter/${chapterID_to_query}`
+        url: `${baseUrl}/manga/${mangaID_to_query}/feed`,
+        params: {
+            limit: 10,
+            ...getOrder({chapter: 'desc'})
+        }
     });
-    return resp.data.data.attributes.chapter
-} 
-
-const getLatestChapterID = async (mangaID_to_query) => {
-    const resp = await axios({
-        method: 'GET',
-        url: `${baseUrl}/manga/${mangaID_to_query}/aggregate`
-    });
-    return formatLatestChapterID(resp.data.volumes)
-}
-
-const getMangaStats = async (id) =>  {
-    const mangaID = id;
-    chapterID = await getLatestChapterID(mangaID)
-    return await chapterQuery(chapterID) 
-}
-
-const formatLatestChapterID = async (mangaVolumes) => {
-    const latestVolume = Object.keys(mangaVolumes).reverse()[0];
-    const latestChapter = Object.keys(mangaVolumes[latestVolume].chapters).reverse()[0];
-    return mangaVolumes[latestVolume]['chapters'][latestChapter].id
+    return resp.data.data[0].attributes.chapter
 }
 
 const updateList = async (path, readingList, originalReadingList) => {
@@ -70,7 +62,7 @@ const updateManga = async () => {
 
     const updatedMangas = await Promise.all(
         fullReadingList.mangas.map(async (item) => {
-            const latestChapter = await getMangaStats(item.id);
+            const latestChapter = await chapterQuery(item.id);
             return { id: item.id, latestChapter };
         })
     );
