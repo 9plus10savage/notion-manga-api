@@ -15,6 +15,7 @@
     "update-manga": "./update-manga.js"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.13",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "inquirer": "^8.0.0"
