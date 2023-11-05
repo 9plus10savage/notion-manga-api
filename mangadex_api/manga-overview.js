@@ -5,11 +5,10 @@ const { deleteManga } = require('./delete-manga');
 const { updateManga, loadJSONFile } = require('./update-manga');
 const inquirer = require('inquirer')
 const path = require('path')
-const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json');
+const jsonPath = path.join(path.normalize(path.join(path.dirname(require.main.filename), '..')), 'reading_list.json')
 
 
-(async () => {
-
+const mangaCli = async () => {
     const choices = {
         addManga: 'Add manga',
         deleteManga: 'Delete manga',
@@ -40,6 +39,7 @@ const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.js
         case choices.showMangaList:
             try {
                 const { mangas } = await loadJSONFile(jsonPath);
+                console.log('last fire mbyy')
                 console.log(mangas);
             } catch (error) {
                 console.error('Error loading the reading list:', error.message);
@@ -48,4 +48,8 @@ const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.js
         case choices.exit:
             process.exitcode = 0
     }
-})();
+};
+
+if (require.main === module) {
+    mangaCli();
+}

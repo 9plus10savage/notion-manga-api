@@ -3,10 +3,10 @@
 const axios = require('axios');
 const path = require('path');
 const { readFileSync, writeFile } = require("fs");
-const { getCurrentTime } = require('./functions.js')
+const { getCurrentTime } = require('./manga_functions.js')
 
 const baseUrl = 'https://api.mangadex.org';
-const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json');
+const jsonPath = path.join(path.normalize(path.join(path.dirname(require.main.filename), '..')), 'reading_list.json')
 
 const loadJSONFile = async (path = jsonPath) => {
     const readingListInitialLoad = readFileSync(path, 'utf8')

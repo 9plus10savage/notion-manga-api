@@ -5,11 +5,10 @@ const path = require('path');
 const Manga = require('./class.js');
 const inquirer = require('inquirer');
 const { writeFile, readFile } = require("fs");
-const { getCurrentTime, getTitles, addReturnToTitles } = require('./functions.js');
-
+const { getCurrentTime, getTitles, addReturnToTitles } = require('./manga_functions.js');
 
 const baseUrl = 'https://api.mangadex.org';
-const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json')
+const jsonPath = path.join(path.normalize(path.join(path.dirname(require.main.filename), '..')), 'reading_list.json')
 
 
 const getOrder = (order = {}) => {

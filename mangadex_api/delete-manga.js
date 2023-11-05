@@ -4,8 +4,7 @@ const path = require('path');
 const inquirer = require('inquirer');
 const { writeFileSync, readFileSync } = require("fs");
 
-const jsonPath = path.join(path.dirname(require.main.filename), 'reading_list.json')
-
+const jsonPath = path.join(path.normalize(path.join(path.dirname(require.main.filename), '..')), 'reading_list.json')
 
 const loadJSONFile = async (path) => {
     const readingListInitialLoad = readFileSync(path, 'utf8')

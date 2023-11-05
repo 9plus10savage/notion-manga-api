@@ -9,10 +9,10 @@
   "author": "Gabriel Høst Andersen",
   "license": "",
   "bin": {
-    "manga": "./manga-overview.js",
-    "add-manga": "./add-manga.js",
-    "delete-manga": "./delete-manga.js",
-    "update-manga": "./update-manga.js"
+    "manga": "./mangadex_api/manga-overview.js",
+    "add-manga": "./mangadex_api/add-manga.js",
+    "delete-manga": "./mangadex_api/delete-manga.js",
+    "update-manga": "./mangadex_api/update-manga.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.13",
