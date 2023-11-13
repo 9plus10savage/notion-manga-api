@@ -1,15 +1,15 @@
 {
-  "lastUpdated": "Nov 04 2023 00:56:49",
+  "lastUpdated": "Nov 12 2023 22:20:48",
   "mangas": [
     {
       "title": "One Piece",
       "id": "a1c7c817-4e59-43b7-9365-09675a149a6f",
-      "latestChapter": "1097"
+      "latestChapter": "1098"
     },
     {
       "title": "Berserk",
       "id": "801513ba-a712-498c-8f57-cae55b38cc92",
-      "latestChapter": "374"
+      "latestChapter": "375"
     },
     {
       "title": "Blue Lock",
@@ -24,7 +24,7 @@
     {
       "title": "Jujutsu Kaisen",
       "id": "c52b2ce3-7f95-469c-96b0-479524fb7a1a",
-      "latestChapter": "240"
+      "latestChapter": "241"
     }
   ]
 }

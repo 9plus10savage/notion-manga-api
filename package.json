@@ -12,7 +12,8 @@
     "manga": "./mangadex_api/manga-overview.js",
     "add-manga": "./mangadex_api/add-manga.js",
     "delete-manga": "./mangadex_api/delete-manga.js",
-    "update-manga": "./mangadex_api/update-manga.js"
+    "update-manga": "./mangadex_api/update-manga.js",
+    "sync-to-notion": "./notion_api/sync-to-notion.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.13",
